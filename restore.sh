@@ -6,7 +6,7 @@ restore_db(){
 	cat $backupdbs > /dev/null 2>&1
 	if [[ $? -eq 0 ]]; then
 	 mysql -h $hostname_a -u $username_a -p$password_a -e 'CREATE DATABASE '$db_name'' 
-	 mysql -h $hostname_a -u $username_a -p$password_a $db_name < $backupdbs
+	 mysql -h $hostname_a -u $username_a -p$password_a $db_name -e 'source '$db_name''
 	 if [[ $? -eq 0 ]]; then
 	 	echo "SUCCESS RESTORE DATABASE "$db_name" ;) ["$formatgl"] " >>  /var/log/db_backup.log
 	 else
