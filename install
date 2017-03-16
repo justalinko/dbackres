@@ -1,0 +1,61 @@
+#!/bin/bash
+
+a_load(){
+{
+for (( i = $2 ; i <= $3 ; i++ )); do
+	sleep 0.1
+	echo "$i"
+done
+ } | dialog --title "JeparaCodeRulez." --gauge "$1" 10 69 0
+}
+
+title="Backup - Restore Program - JeparaCodeRulez"
+bactit="Backup - Restore Database  Made by <3 + Alinko BLC Telkom Klaten"
+
+dialog  --title "$title" --backtitle "$bactit" --textbox Welcome.md 26 80
+dialog --title "$title" --backtitle "$bactit" --textbox LICENSE 26 80
+
+a_load "Creating Directory /var/db_backres/backup ..." 0 25
+mkdir -p /var/db_backres > /dev/null 2>&1
+mkdir -p /var/db_backres/backup > /dev/null 2>&1
+chmod 755 -R /var/db_backres/backup > /dev/null 2>&1
+a_load "Creating File Log /var/log/db_backup.log ..." 25 30
+touch /var/log/db_backup.log > /dev/null 2>&1
+echo "#JeparaCodeRulez alinko kun shutdown57" >> /var/log/db_backup.log
+a_load "Creating File Configuration /etc/db_backres/db_alinko.conf ..." 30 40
+mkdir -p /etc/db_backres
+touch /etc/db_backres/db_alinko.conf > /dev/null 2>&1
+a_load "Configure /etc/db_backres/db_alinko.conf ..." 40 50
+echo formatgl=\`date +%T_%F\` >> /etc/db_backres/db_alinko.conf
+echo name_db=\"db-backup-alinko-\"\$formatgl\".sql\" >> /etc/db_backres/db_alinko.conf
+echo path_backup=\"/var/db_backres/backup\" >> /etc/db_backres/db_alinko.conf
+a_load "Configure Dulu hehehe tunggu eaa..." 50 57
+echo backupdb=\$path_backup/\$name_db >> /etc/db_backres/db_alinko.conf
+echo backupdbs=\$path_backup/\"new-db-backup.sql\" >> /etc/db_backres/db_alinko.conf
+
+dialog --title "$title" --backtitle "$bactit" --msgbox "Anda akan mengkonfigurasi Koneksi Ke Database :)" 10 80
+
+
+hostname_a=$(dialog --title "$title" --backtitle "$bactit" --inputbox "Masukan Hostname :" 10 80 3>&1 1>&2 2>&3 3>&1)
+username_a=$(dialog --title "$title" --backtitle "$bactit" --inputbox "Masukan Username :" 10 80 3>&1 1>&2 2>&3 3>&1)
+password_a=$(dialog --title "$title" --backtitle "$bactit" --inputbox "Masukan Password :" 10 80 3>&1 1>&2 2>&3 3>&1)
+database_a=$(dialog --title "$title" --backtitle "$bactit" --inputbox "Masukan Database :" 10 80 3>&1 1>&2 2>&3 3>&1)
+
+a_load "Configure Hostname ..." 57 60
+echo "hostname_a=\""$hostname_a"\"" >> /etc/db_backres/db_alinko.conf
+a_load "Configure Username ..." 60 70
+echo "username_a=\""$username_a"\"" >> /etc/db_backres/db_alinko.conf
+a_load "Configure Password ..." 70 76
+echo "password_a=\""$password_a"\"" >> /etc/db_backres/db_alinko.conf
+a_load "Configure Database ..." 76 85
+echo "db_name=\""$database_a"\"" >> /etc/db_backres/db_alinko.conf
+a_load "Creating Directory /opt/db_backres/ , Copying files ..." 85 90
+mkdir -p /opt/db_backres/
+cp * /opt/db_backres/
+chmod 755 -R /opt/db_backres
+a_load "Finishing ..." 90 95
+sleep 3
+dialog --msgbox "Installasi Telah Selesai. \n Silakan Atur cronjob dengan perintah \n [BACKUP]-> Untuk Backup * * * * * bash /opt/db_backres/backup.sh \n [RESTORE]-> Untuk Restore * * * * * bash /opt/db_backres/restore.sh " 15 50
+a_load "Running Crontab Command ..." 95 100
+sleep 2
+crontab -e
