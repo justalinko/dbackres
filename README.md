@@ -33,3 +33,11 @@ root@Indonesian:~# cd dbackres
 root@Indonesian:~# chmod 755 *
 root@Indonesian:~# ./install
 </pre>
+
+# Info Configuration
+<pre>
+BackUp Directory : <i> /var/db_backres/backup/</i>
+DB Connect Config: <i> /etc/db_backres/db_alinko.conf </i>
+Installation Dir : <i> /opt/db_backres/ </i>
+Log File         : <i> /var/log/db_backup.log </i>
+</pre>
