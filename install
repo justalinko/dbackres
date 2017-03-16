@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 a_load(){
 {
 for (( i = $2 ; i <= $3 ; i++ )); do
@@ -55,7 +56,7 @@ cp * /opt/db_backres/
 chmod 755 -R /opt/db_backres
 a_load "Finishing ..." 90 95
 sleep 3
-dialog --msgbox "Installasi Telah Selesai. \n Silakan Atur cronjob dengan perintah \n [BACKUP]-> Untuk Backup * * * * * bash /opt/db_backres/backup.sh \n [RESTORE]-> Untuk Restore * * * * * bash /opt/db_backres/restore.sh " 15 50
+dialog --msgbox "Installasi Telah Selesai. \n Silakan Atur cronjob dengan perintah \n [RESTORE]-> Untuk Restore * * * * * bash /opt/db_backres/restore.sh \n [BACKUP]-> Untuk Backup * * * * * bash /opt/db_backres/backup.sh " 15 50
 a_load "Running Crontab Command ..." 95 100
 sleep 2
 crontab -e
