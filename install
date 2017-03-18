@@ -1,5 +1,7 @@
 #!/bin/bash
 
+title="Backup - Restore Program - JeparaCodeRulez"
+bactit="Backup - Restore Database  Made by <3 + Alinko BLC Telkom Klaten"
 
 a_load(){
 {
@@ -7,11 +9,8 @@ for (( i = $2 ; i <= $3 ; i++ )); do
 	sleep 0.1
 	echo "$i"
 done
- } | dialog --title "JeparaCodeRulez." --gauge "$1" 10 69 0
+ } | dialog --title "JeparaCodeRulez." --backtitle "$bactit" --gauge "$1" 10 69 0
 }
-
-title="Backup - Restore Program - JeparaCodeRulez"
-bactit="Backup - Restore Database  Made by <3 + Alinko BLC Telkom Klaten"
 
 dialog  --title "$title" --backtitle "$bactit" --textbox Welcome.md 26 80
 dialog --title "$title" --backtitle "$bactit" --textbox LICENSE 26 80
@@ -27,14 +26,22 @@ a_load "Creating File Configuration /etc/db_backres/db_alinko.conf ..." 30 40
 mkdir -p /etc/db_backres
 touch /etc/db_backres/db_alinko.conf > /dev/null 2>&1
 a_load "Configure /etc/db_backres/db_alinko.conf ..." 40 50
+cat Welcome.md >> /etc/db_backres/db_alinko.conf
+echo "#FORMAT TANGGAL " >> /etc/db_backres/db_alinko.conf
 echo formatgl=\`date +%T_%F\` >> /etc/db_backres/db_alinko.conf
+echo "#NAMA BACKUP DATABASE " >> /etc/db_backres/db_alinko.conf
 echo name_db=\"db-backup-alinko-\"\$formatgl\".sql\" >> /etc/db_backres/db_alinko.conf
+echo "#DIRECTORY BACKUP " >> /etc/db_backres/db_alinko.con
 echo path_backup=\"/var/db_backres/backup\" >> /etc/db_backres/db_alinko.conf
+echo "#GABUNGAN DARI NAMA BACKUP DAN DIRECTORY BACKUP" >> /etc/db_backres/db_alinko.conf
 a_load "Configure Dulu hehehe tunggu eaa..." 50 57
 echo backupdb=\$path_backup/\$name_db >> /etc/db_backres/db_alinko.conf
+echo "#NAMA BACKUP STATIC " >> /etc/db_backres/db_alinko.conf
 echo backupdbs=\$path_backup/\"new-db-backup.sql\" >> /etc/db_backres/db_alinko.conf
 
-dialog --title "$title" --backtitle "$bactit" --msgbox "Anda akan mengkonfigurasi Koneksi Ke Database :)" 10 80
+dialog --title "$title" --backtitle "$bactit" --msgbox "Anda akan mengkonfigurasi Koneksi Ke Database :) \n 
+Mohon konfigurasi dengan benar \n
+Jika ada kesalahan konfigurasi manual di /etc/db_backres/db_alinko.conf " 10 80
 
 
 hostname_a=$(dialog --title "$title" --backtitle "$bactit" --inputbox "Masukan Hostname :" 10 80 3>&1 1>&2 2>&3 3>&1)
@@ -43,12 +50,16 @@ password_a=$(dialog --title "$title" --backtitle "$bactit" --inputbox "Masukan P
 database_a=$(dialog --title "$title" --backtitle "$bactit" --inputbox "Masukan Database :" 10 80 3>&1 1>&2 2>&3 3>&1)
 
 a_load "Configure Hostname ..." 57 60
+echo "#HOSTNAME DATABASE" >> /etc/db_backres/db_alinko.conf
 echo "hostname_a=\""$hostname_a"\"" >> /etc/db_backres/db_alinko.conf
 a_load "Configure Username ..." 60 70
+echo "#USERNAME DATABASE" >> /etc/db_backres/db_alinko.conf
 echo "username_a=\""$username_a"\"" >> /etc/db_backres/db_alinko.conf
 a_load "Configure Password ..." 70 76
+echo "#PASSWORD DATABASE " >> /etc/db_backres/db_alinko.conf
 echo "password_a=\""$password_a"\"" >> /etc/db_backres/db_alinko.conf
 a_load "Configure Database ..." 76 85
+echo "#DATABASE NAME" >> /etc/db_backres/db_alinko.conf
 echo "db_name=\""$database_a"\"" >> /etc/db_backres/db_alinko.conf
 a_load "Creating Directory /opt/db_backres/ , Copying files ..." 85 90
 mkdir -p /opt/db_backres/
@@ -56,7 +67,15 @@ cp * /opt/db_backres/
 chmod 755 -R /opt/db_backres
 a_load "Finishing ..." 90 95
 sleep 3
-dialog --msgbox "Installasi Telah Selesai. \n Silakan Atur cronjob dengan perintah \n [RESTORE]-> Untuk Restore * * * * * bash /opt/db_backres/restore.sh \n [BACKUP]-> Untuk Backup * * * * * bash /opt/db_backres/backup.sh " 15 50
+dialog --msgbox "Installasi Telah Selesai. \n Silakan Atur cronjob dengan perintah \n
+ [ RESTORE  ] * * * * * bash /opt/db_backres/restore.sh \n 
+ [ BACKUP   ] * * * * * bash /opt/db_backres/backup.sh \n
+ [ COMPRESS ] * * * * * bash /opt/db_backres/compress.sh \n" 15 70
 a_load "Running Crontab Command ..." 95 100
 sleep 2
+clear
 crontab -e
+sleep 1
+clear
+echo "\n\n"
+echo "Thanks For Install :* - JeparaCodeRulez."
