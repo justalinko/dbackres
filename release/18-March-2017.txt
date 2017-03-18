@@ -3,3 +3,10 @@
 * Easy Install
 * Easy Configuration
 * With Cronjob < Crontab command >
+
+# Release Info
+
+Release          : https://github.com/alintamvanz/dbackres/releases
+Release version  : https://github.com/alintamvanz/dbackres/releases/tag/0.1
+Download zip     : https://github.com/alintamvanz/dbackres/archive/0.1.zip
+Download tar.gz  : https://github.com/alintamvanz/dbackres/archive/0.1.tar.gz
