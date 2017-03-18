@@ -1,0 +1,5 @@
+# Beta release
+
+* Easy Install
+* Easy Configuration
+* With Cronjob < Crontab command >
