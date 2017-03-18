@@ -25,6 +25,10 @@ Selamat datang di program BACKUP DAN RESTORE DATABASE BY ALINKO KUN
 
     REFERENSI : http://stackoverflow.com https://bash.cyberciti.biz/guide/A_yes/no_dialog_box https://dev.mysql.com/doc/refman/5.7/en/mysqldump-sql-format.html https://www.liquidweb.com/kb/how-to-back-up-mysql-databases-from-the-command-line/ http://www.linuxjournal.com/article/2807
 
+# Release
+
+Release Info    : https://github.com/alintamvanz/dbackres/tree/master/release
+Release Github  : https://github.com/alintamvanz/dbackres/release 
 
 # Installation
 <pre>
