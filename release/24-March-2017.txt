@@ -1,0 +1,14 @@
+# Beta release
+
+* Easy Install
+* Easy Configuration
+* With Cronjob < Crontab command >
+* Compress to *.zip when *.sql more than 20
+
+
+# Release Info
+
+Release          : https://github.com/alintamvanz/dbackres/releases
+Release version  : https://github.com/alintamvanz/dbackres/releases/tag/0.2
+Download zip     : https://github.com/alintamvanz/dbackres/archive/0.2.zip
+Download tar.gz : https://github.com/alintamvanz/dbackres/archive/0.2.tar.gz
