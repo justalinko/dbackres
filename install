@@ -9,11 +9,11 @@ for (( i = $2 ; i <= $3 ; i++ )); do
 	sleep 0.1
 	echo "$i"
 done
- } | dialog --title "JeparaCodeRulez." --backtitle "$bactit" --gauge "$1" 10 69 0
+ } | whiptail --title "JeparaCodeRulez." --backtitle "$bactit" --gauge "$1" 10 69 0
 }
 
-dialog  --title "$title" --backtitle "$bactit" --textbox Welcome.md 26 80
-dialog --title "$title" --backtitle "$bactit" --textbox LICENSE 26 80
+whiptail  --title "$title" --backtitle "$bactit" --textbox Welcome.md 26 80
+whiptail --title "$title" --backtitle "$bactit" --textbox LICENSE 26 80
 
 a_load "Creating Directory /var/db_backres/backup ..." 0 25
 mkdir -p /var/db_backres > /dev/null 2>&1
@@ -39,15 +39,15 @@ echo backupdb=\$path_backup/\$name_db >> /etc/db_backres/db_alinko.conf
 echo "#NAMA BACKUP STATIC " >> /etc/db_backres/db_alinko.conf
 echo backupdbs=\$path_backup/\"new-db-backup.sql\" >> /etc/db_backres/db_alinko.conf
 
-dialog --title "$title" --backtitle "$bactit" --msgbox "Anda akan mengkonfigurasi Koneksi Ke Database :) \n 
+whiptail --title "$title" --backtitle "$bactit" --msgbox "Anda akan mengkonfigurasi Koneksi Ke Database :) \n 
 Mohon konfigurasi dengan benar \n
 Jika ada kesalahan konfigurasi manual di /etc/db_backres/db_alinko.conf " 10 80
 
 
-hostname_a=$(dialog --title "$title" --backtitle "$bactit" --inputbox "Masukan Hostname :" 10 80 3>&1 1>&2 2>&3 3>&1)
-username_a=$(dialog --title "$title" --backtitle "$bactit" --inputbox "Masukan Username :" 10 80 3>&1 1>&2 2>&3 3>&1)
-password_a=$(dialog --title "$title" --backtitle "$bactit" --inputbox "Masukan Password :" 10 80 3>&1 1>&2 2>&3 3>&1)
-database_a=$(dialog --title "$title" --backtitle "$bactit" --inputbox "Masukan Database :" 10 80 3>&1 1>&2 2>&3 3>&1)
+hostname_a=$(whiptail --title "$title" --backtitle "$bactit" --inputbox "Masukan Hostname :" 10 80 3>&1 1>&2 2>&3 3>&1)
+username_a=$(whiptail --title "$title" --backtitle "$bactit" --inputbox "Masukan Username :" 10 80 3>&1 1>&2 2>&3 3>&1)
+password_a=$(whiptail --title "$title" --backtitle "$bactit" --inputbox "Masukan Password :" 10 80 3>&1 1>&2 2>&3 3>&1)
+database_a=$(whiptail --title "$title" --backtitle "$bactit" --inputbox "Masukan Database :" 10 80 3>&1 1>&2 2>&3 3>&1)
 
 a_load "Configure Hostname ..." 57 60
 echo "#HOSTNAME DATABASE" >> /etc/db_backres/db_alinko.conf
@@ -67,7 +67,7 @@ cp * /opt/db_backres/
 chmod 755 -R /opt/db_backres
 a_load "Finishing ..." 90 95
 sleep 3
-dialog --msgbox "Installasi Telah Selesai. \n Silakan Atur cronjob dengan perintah \n
+whiptail --msgbox "Installasi Telah Selesai. \n Silakan Atur cronjob dengan perintah \n
  [ RESTORE  ] * * * * * bash /opt/db_backres/restore.sh \n 
  [ BACKUP   ] * * * * * bash /opt/db_backres/backup.sh \n
  [ COMPRESS ] * * * * * bash /opt/db_backres/compress.sh \n" 15 70
