@@ -12,8 +12,9 @@ done
  } | whiptail --title "JeparaCodeRulez." --backtitle "$bactit" --gauge "$1" 10 69 0
 }
 
-whiptail  --title "$title" --backtitle "$bactit" --textbox Welcome.md 26 80
-whiptail --title "$title" --backtitle "$bactit" --textbox LICENSE 26 80
+install_dbackres(){
+whiptail  --title "$title" --backtitle "$bactit" --scrolltext --textbox Welcome.md 30 100
+whiptail --title "$title" --backtitle "$bactit" --scrolltext --textbox LICENSE 30 100
 
 a_load "Creating Directory /var/db_backres/backup ..." 0 25
 mkdir -p /var/db_backres > /dev/null 2>&1
@@ -64,13 +65,19 @@ echo "db_name=\""$database_a"\"" >> /etc/db_backres/db_alinko.conf
 a_load "Creating Directory /opt/db_backres/ , Copying files ..." 85 90
 mkdir -p /opt/db_backres/
 cp * /opt/db_backres/
+cp dbackres.tools /usr/bin/dbackres
+chmod 755 /usr/bin/dbackres
 chmod 755 -R /opt/db_backres
 a_load "Finishing ..." 90 95
 sleep 3
 whiptail --msgbox "Installasi Telah Selesai. \n Silakan Atur cronjob dengan perintah \n
  [ RESTORE  ] * * * * * bash /opt/db_backres/restore.sh \n 
  [ BACKUP   ] * * * * * bash /opt/db_backres/backup.sh \n
- [ COMPRESS ] * * * * * bash /opt/db_backres/compress.sh \n" 15 70
+ [ COMPRESS ] * * * * * bash /opt/db_backres/compress.sh \n
+ -------------------------------------------------------
+ | Untuk Panduan Manual Nya, dengan perintah : dbackres --help
+ -------------------------------------------------------
+ " 15 70
 a_load "Running Crontab Command ..." 95 100
 sleep 2
 clear
@@ -79,3 +86,12 @@ sleep 1
 clear
 echo "\n\n"
 echo "Thanks For Install :* - JeparaCodeRulez."
+}
+if [[ `whoami` == "root" ]]; then
+	install_dbackres
+else
+	echo "[+] Welcome to dbackres v0.5.0 :*"
+	sleep 1
+	echo "[-] You Need Be Root To Run This Script :*"
+	echo "regards : shutdown57 a.k.a  alinko"
+fi
