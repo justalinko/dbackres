@@ -1,0 +1,92 @@
+#!/bin/bash
+
+a_load(){
+{
+for (( i = $2 ; i <= $3 ; i++ )); do
+	sleep 0.1
+	echo "$i"
+done
+ } | whiptail --title "JeparaCodeRulez." --backtitle "$bactit" --gauge "$1" 10 69 0
+}
+
+uninstall_dbackres(){
+a_load "uninstall dbackres ..." 0 10
+sleep 2 > /dev/null 2>&1
+a_load "Removing /etc/db_ackres ..." 10 40
+rm -rf /etc/db_backres
+a_load "Removing /opt/db_backres ..." 40 60
+a_load "Removing /var/db_backres ..." 60 70
+rm -rf /var/db_backres
+a_load "Removing Log files ..." 70 80
+rm /var/log/db_backup.log
+a_load "Cleaning Command dbackres ..."80 90
+rm /usr/bin/dbackres
+a_load "Removing Removing Removing ..."90 100
+rm -rf /opt/db_backres
+}
+help_dbackres(){
+	echo "[+] Welcome To DBackres v0.5.0 "
+	sleep 1
+	echo "[-] Author : shutdown57 a.k.a alinko "
+	sleep 2
+	clear
+	printf "
+	+ Welcome To dbackres manually +
+	There were his text below as you enter the command \"dbackres --help\". 
+	we will help you to use dbackres easier: *.
+	Regards: shutdown57 a.k.a alinko
+	
+	# backres --help            : to display this view
+	# backres backup            : for backup command
+	# backres restore           : for restore command
+	# backres compress          : for compress command
+	# dbackres --all-functions  : to run three commands above (backup, restore, compress)
+	# dbackres --config         : to view configuration backres
+	# dbackres --config-edit    : to change the configuration dbackres
+	# dbackres cronjob          : for configure cronjob.
+	# dbackres --uninstall 		: for uninstall this software :*.
+
+
+	"
+}
+if [[ `whoami` != "root" ]]; then
+	echo "[+] Welcome to dbackres v0.5.0 :*"
+	sleep 1
+	echo "[-] You Need Be Root To Run This Script :*"
+	echo "regards : shutdown57 a.k.a  alinko"
+else
+case $1 in
+	"compress" )
+	bash /opt/db_backres/compress.sh
+		;;
+	"backup" )
+	bash /opt/db_backres/backup.sh
+		;;
+	"restore" )
+	bash /opt/db_backres/restore.sh
+		;;
+	"--all-functions" )
+	bash /opt/db_backres/restore.sh
+	bash /opt/db_backres/backup.sh
+	bash /opt/db_backres/compress.sh
+		;;
+	"--uninstall" )
+	uninstall_dbackres
+		;;
+	"--help" )
+	help_dbackres
+		;;
+	"--config" )
+	clear
+	cat /etc/db_backres/db_alinko.conf
+		;;
+	"--config-edit" )
+	nano /etc/db_backres/db_alinko.conf
+		;;
+	"cronjob" )
+	crontab -e
+		;;
+		*)
+		help_dbackres
+esac
+fi
