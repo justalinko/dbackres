@@ -27,8 +27,8 @@ Selamat datang di program BACKUP DAN RESTORE DATABASE BY ALINKO KUN
 
 # Release
 
-Release Info    : https://github.com/alintamvanz/dbackres/tree/master/release <br/>
-Release Github  : https://github.com/alintamvanz/dbackres/release 
+Release Info & Changelog   : https://github.com/alintamvanz/dbackres/tree/master/release <br/>
+Release Github             : https://github.com/alintamvanz/dbackres/releases
 
 # Installation
 <pre>
