@@ -64,7 +64,7 @@ echo "#DATABASE NAME" >> /etc/db_backres/db_alinko.conf
 echo "db_name=\""$database_a"\"" >> /etc/db_backres/db_alinko.conf
 a_load "Creating Directory /opt/db_backres/ , Copying files ..." 85 90
 mkdir -p /opt/db_backres/
-cp * /opt/db_backres/
+cp -r * /opt/db_backres/
 cp dbackres.tools /usr/bin/dbackres
 chmod 755 /usr/bin/dbackres
 chmod 755 -R /opt/db_backres
