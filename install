@@ -1,6 +1,6 @@
 #!/bin/bash
 
-title="Backup - Restore Program - JeparaCodeRulez"
+title="Backup - Restore Program - linuXcode.org"
 bactit="Backup - Restore Database  Made by <3 + Alinko BLC Telkom Klaten"
 
 a_load(){
@@ -9,7 +9,7 @@ for (( i = $2 ; i <= $3 ; i++ )); do
 	sleep 0.1
 	echo "$i"
 done
- } | whiptail --title "JeparaCodeRulez." --backtitle "$bactit" --gauge "$1" 10 69 0
+ } | whiptail --title "linuXcode.org" --backtitle "$bactit" --gauge "$1" 10 69 0
 }
 
 install_dbackres(){
@@ -71,12 +71,13 @@ chmod 755 -R /opt/db_backres
 a_load "Finishing ..." 90 95
 sleep 3
 whiptail --msgbox "Installasi Telah Selesai. \n Silakan Atur cronjob dengan perintah \n
- [ RESTORE  ] * * * * * bash /opt/db_backres/restore.sh \n 
- [ BACKUP   ] * * * * * bash /opt/db_backres/backup.sh \n
- [ COMPRESS ] * * * * * bash /opt/db_backres/compress.sh \n
- -------------------------------------------------------
- | Untuk Panduan Manual Nya, dengan perintah : dbackres --help
- -------------------------------------------------------
+ [ RESTORE  ] * * * * * /usr/bin/dbackres restore \n 
+ [ BACKUP   ] * * * * * /usr/bin/dbackres backup \n
+ [ COMPRESS ] * * * * * /usr/bin/dbackres compress \n
+ [ ALL FUNC ] * * * * * /usr/bin/dbackres --all-functions \n
+ ------------------------------------------------------- \n
+ | Untuk Panduan Manual Nya, dengan perintah : dbackres --help \n
+ ------------------------------------------------------- \n
  " 15 70
 a_load "Running Crontab Command ..." 95 100
 sleep 2
@@ -84,13 +85,12 @@ clear
 crontab -e
 sleep 1
 clear
-echo "\n\n"
 echo "Thanks For Install :* - JeparaCodeRulez."
 }
 if [[ `whoami` == "root" ]]; then
 	install_dbackres
 else
-	echo "[+] Welcome to dbackres v0.5.0 :*"
+	echo "[+] Welcome to dbackres v0.3.0 :*"
 	sleep 1
 	echo "[-] You Need Be Root To Run This Script :*"
 	echo "regards : shutdown57 a.k.a  alinko"
