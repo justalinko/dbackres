@@ -1,0 +1,9 @@
+# Release dbackres v0.3 
+
+-> Changelog
+* Add file dbackres.tools
+* Add command dbackres
+* Easy Configuration in crontab
+* dbackres --help
+* Change installer mode dialog to whiptail
+* Fix new issues
