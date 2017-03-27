@@ -7,3 +7,11 @@
 * dbackres --help
 * Change installer mode dialog to whiptail
 * Fix new issues
+
+
+# Release Info
+
+Release          : https://github.com/alintamvanz/dbackres/releases
+Release version  : https://github.com/alintamvanz/dbackres/releases/tag/0.3
+Download zip     : https://github.com/alintamvanz/dbackres/archive/0.3.zip
+Download tar.gz : https://github.com/alintamvanz/dbackres/archive/0.3.tar.gz
